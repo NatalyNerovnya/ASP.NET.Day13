@@ -146,8 +146,8 @@ namespace Tree
 
         private bool Contain(T n, Node subtree)
         {
-            if (IsEmpty(node))
-                throw new ArgumentNullException();
+            if (IsEmpty(subtree))
+                return false;
 
             if (comparer.Compare(n, subtree.data) == 0)
                 return true;
