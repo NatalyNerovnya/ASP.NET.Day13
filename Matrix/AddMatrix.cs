@@ -7,8 +7,29 @@ using System.Threading.Tasks;
 
 namespace Matrix
 {
+    /// <summary>
+    /// Class provading extension method for summing matrix
+    /// </summary>
     public static class AddMatrix
     {
+        #region Public Methods
+        /// <summary>
+        /// Method for counting sum of two matrix
+        /// </summary>
+        /// <typeparam name="T">Type of elements in matrix</typeparam>
+        /// <param name="matrix">First matrix</param>
+        /// <param name="otherMatrix">Second matrix</param>
+        /// <returns>Sum matrix</returns>
+        public static MatrixClass<T> SumMatrix<T>(this MatrixClass<T> matrix, MatrixClass<T> otherMatrix)
+        {
+            if (typeof(T) == typeof(String))
+                return (MatrixClass<T>)(object)SumStrings(matrix, otherMatrix);
+            else
+                return SumAll(matrix, otherMatrix);
+        }
+        #endregion
+
+        #region Private Methods
         private static Func<T, T, T> CreateAdd<T>()
         {
             ParameterExpression lhs = Expression.Parameter(typeof(T), "lhs");
@@ -20,15 +41,6 @@ namespace Matrix
             Func<T, T, T> addMethod = addExpr.Compile();
 
             return addMethod;
-        }
-
-        public static MatrixClass<T> SumMatrix<T>(this MatrixClass<T> matrix, MatrixClass<T> otherMatrix)
-        {
-            if (typeof (T) == typeof (String))
-                return (MatrixClass<T>)(object)SumStrings(matrix, otherMatrix);
-            else
-                return SumAll(matrix, otherMatrix);
-            
         }
 
         private static MatrixClass<string> SumStrings<T>(MatrixClass<T> matrix, MatrixClass<T> otherMatrix)
@@ -60,5 +72,6 @@ namespace Matrix
             }
             return newMatrix;
         }
+        #endregion
     }
 }

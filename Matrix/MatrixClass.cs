@@ -33,6 +33,20 @@ namespace Matrix
 
         #endregion
 
+
+        #region Public Methods
+        /// <summary>
+        /// Return all elements of matrix
+        /// </summary>
+        /// <returns>Matrix as 1-dim. array</returns>
+        public T[] GetMatrix()
+        {
+            T[] arr = new T[dim * dim];
+            Array.Copy(matrix, arr, dim * dim);
+            return arr;
+        }
+        #endregion
+
         #region Event
         public event EventHandler<ChangeMatrixEventArgs<T>> Change = delegate { };
 
@@ -48,25 +62,5 @@ namespace Matrix
         }
         #endregion
 
-
-        //public T[,] GetMatrix()
-        //{
-        //    T[,] matr = new T[dim, dim];
-        //    for (int i = 0; i < dim; i++)
-        //    {
-        //        for (int j = 0; j < dim; j++)
-        //        {
-        //            matr[i, j] = this[i, j];
-        //        }
-        //    }
-        //    return matr;
-        //}
-
-        public T[] GetMatrix()
-        {
-            T[] arr = new T[dim * dim];
-            Array.Copy(matrix, arr, dim * dim);
-            return arr;
-        }
     }
 }

@@ -8,9 +8,12 @@ namespace Matrix
 {
     public class SquareMatrix<T> : MatrixClass<T>
     {
+        #region Constructors
         public SquareMatrix(int dim) : base(dim)
         { }
+        #endregion
 
+        #region Indexer
         public override T this[int indexRow, int indexColumn]
         {
             get
@@ -28,5 +31,6 @@ namespace Matrix
                 this.MakeChange(indexColumn, indexRow, this);
             }
         }
+        #endregion
     }
 }

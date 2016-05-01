@@ -9,13 +9,28 @@ namespace Matrix
 {
     public class ListenersChangeMatrix<T>
     {
+        #region Costructors
+
         public ListenersChangeMatrix(MatrixClass<T> matrix)
         {
             matrix.Change += ListenerMsgInFile;
             if (matrix is SymmetricMatrix<T>)
                 matrix.Change += ChangeSymmetric;
         }
+        #endregion
 
+        #region Public Methods
+        /// <summary>
+        /// Unrigester from writing in file
+        /// </summary>
+        /// <param name="matrix"></param>
+        public void Unregister(MatrixClass<T> matrix)
+        {
+            matrix.Change -= ListenerMsgInFile;
+        }
+        #endregion
+
+        #region Listeners
         private void ListenerMsgInFile(Object sender, ChangeMatrixEventArgs<T> eventArgs)
         {
             StreamWriter write;
@@ -32,11 +47,6 @@ namespace Matrix
                 return;
             eventArgs.Matrix[eventArgs.IndexRow, eventArgs.IndexColumn] = eventArgs.Matrix[eventArgs.IndexColumn, eventArgs.IndexRow];
         }
-
-        public void Unregister(MatrixClass<T> matrix)
-        {
-            matrix.Change -= ListenerMsgInFile;
-        }
-
+        #endregion
     }
 }

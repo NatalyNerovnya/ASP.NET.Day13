@@ -8,7 +8,9 @@ namespace Matrix
 {
     public class SymmetricMatrix<T> : SquareMatrix<T>
     {
+        #region Constructors
         public SymmetricMatrix(int dim) : base(dim)
         {}
+        #endregion
     }
 }

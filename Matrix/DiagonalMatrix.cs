@@ -9,11 +9,12 @@ namespace Matrix
 {
     public class DiagonalMatrix<T> : SquareMatrix<T>
     {
+        #region Constructors
         public DiagonalMatrix(int dim) : base(dim)
-        {
+        {}
+        #endregion
 
-        }
-
+        #region Indexer
         public override T this[int indexRow, int indexColumn]
         {
             get
@@ -29,7 +30,7 @@ namespace Matrix
                 CheckRef(value);
                 if (indexColumn == indexRow)
                     matrix[indexColumn + indexRow * dim] = value;
-                //this.MakeChange(indexRow, indexColumn);
+                this.MakeChange(indexRow, indexColumn, this);
             }
         }
 
@@ -42,7 +43,8 @@ namespace Matrix
                 this.MakeChange(index, index, this);
             }
         }
+        #endregion
 
-       
+
     }
 }
