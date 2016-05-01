@@ -40,6 +40,10 @@ namespace Tree
         #endregion
 
         #region Public Methods
+        /// <summary>
+        /// Adding elements
+        /// </summary>
+        /// <param name="arr">Array of elements</param>
         public void Add(params T[] arr)
         {
             CheckRef(arr);
@@ -47,16 +51,29 @@ namespace Tree
                 Add(arr[i], ref node);
         }
 
+        /// <summary>
+        /// Add one elemets to the tree
+        /// </summary>
+        /// <param name="n"></param>
         public void Add(T n)
         {
             Add(n, ref node);
         }
 
+        /// <summary>
+        /// Tell weather tree contain some element
+        /// </summary>
+        /// <param name="n">Element</param>
+        /// <returns>True if element exist in tree</returns>
         public bool Contain(T n)
         {
             return Contain(n, node);
         }
 
+        /// <summary>
+        /// InOrderTravers
+        /// </summary>
+        /// <returns>Inumerator</returns>
         public IEnumerator<T> GetEnumerator()
         {
             foreach (var element in InOrderTravers(node))
